@@ -1,6 +1,8 @@
 var http = require('http');
 var url = require('url');
 var sql = require('mysql');
+//Called when server first starts
+// Opens connection to database and creates the listeners
 function start(handle, route)
 {
 	var conection = mysql.createConnection({
@@ -8,6 +10,8 @@ function start(handle, route)
 	user : 'example',
 	password: 'example'
 	});
+	//Called when a request hits the server.
+	//Takes postData from the request then makes a call to the router to deal with callbacks
 	function onRequest(request, response)
 	{
 		var postData = "";

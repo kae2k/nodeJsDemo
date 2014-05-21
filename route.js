@@ -1,8 +1,9 @@
-function route(handle, connection, pathname, getData, response)
+//Called from the server when a request is recieved. Calls the correct handler.
+function route(handle, connection, pathname, postData, response)
 {
 	if( typeof handle[pathname] === 'function')
 	{
- 		handle[pathname](connection, getData, response);
+ 		handle[pathname](connection, postData, response);
 	}
 	else
 	{

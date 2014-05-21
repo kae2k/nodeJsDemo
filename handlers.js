@@ -1,4 +1,5 @@
 var sql = require(sql);
+// Called on page load to populate subject list
 function onLoad(connection, postData, response)
 {
 	connection.query('SELECT subject FROM classDB', function(error, rows, feilds){

@@ -1,18 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script>
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "index.js/onLoad", true);
-	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("");
-<script>
-  </head>
+	<head>
+		<script>
+			function loadXMLDoc(url, callBack)
+			{
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.onreadystatechange=callBack;
+				xmlHttp.open("GET", url, true);
+				xmlHttp.send();
+			}
+			function onLoad()
+			{
+				loadXMLDoc("index.js/onLoad", function(){
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					{
+						document.getElementById("subjectList").innerHTML = xmlHttp.responseText;
+					}
+				});
+			}
+			function subjectExpand()
+			{
+				var url = document.getElementById("subjectForm").
+				loadXMLDoc("index.js/subjectExpand", function(){
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					{
+						document.getElementById("sectionList").innerHTML = "";
+						document.getElementById("details").innerHTML = "";
+						document.getElementById("classList").innerHTML = xmlHttp.responseText;
+					}
+				});
+			}
+			function classExpand()
+			{
+				loadXMLDoc("index.js/classExpand", function(){
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					{
+						document.getElementById("details").innerHTML = "";
+						document.getElementById("sectionList").innerHTML = xmlHttp.responseText;
+					}
+				});
+			}
+			function sectionExpand()
+			{
+				loadXMLDoc("index.js/sectionExpand", function(){
+					if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+					{
+						document.getElementById("details").innerHTML = xmlHttp.responseText;
+					}
+				});
+			}
+			window.onload = onLoad();
+		</script>
+  	</head>
 	<body>
-		<form action = "POST">
-			<option value = ""></option>
-		</form>
+		<div id = "subjectList"></div>
+		<div id = "classList"></div>
+		<div id = "sectionList"></div>
+		<div id = "detailsList"></div>
 	</body>
 </html>
