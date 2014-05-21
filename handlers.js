@@ -53,6 +53,7 @@ function sectionExpand(connection, postData, response)
 	 	response.end();
 	 });
 }
+exports.onLoad = onLoad;
 exports.subjectExpand = subjectExpand;
 exports.classExpand = classExpand;
 exports.sectionExpand = sectionExpand;
